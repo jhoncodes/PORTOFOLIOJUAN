@@ -1,0 +1,26 @@
+/* Importar utilidades base si fuera necesario */
+@layer components {
+  /* Estilo básico de las tarjetas de proyecto */
+  .card {
+    @apply bg-[#F4EFEA] border border-[#E3DCCE] rounded-2xl overflow-hidden hover:border-[#B5C9B5] transition-all duration-300 group shadow-sm;
+  }
+
+  /* Etiquetas de habilidades */
+  .badge {
+    @apply bg-[#EAE3D9] text-[#2D4030] text-xs font-medium px-3 py-1.5 rounded-lg border border-[#DDD5C7];
+  }
+
+  .badge-active {
+    @apply bg-[#527853] text-white text-xs font-medium px-3 py-1.5 rounded-lg shadow-sm;
+  }
+
+  /* Etiquetas tecnológicas pequeñas dentro de proyectos */
+  .tag {
+    @apply text-xs bg-[#EAE3D9] text-[#5A554E] px-2.5 py-1 rounded-md;
+  }
+
+  /* Botones de redes sociales del footer */
+  .social-btn {
+    @apply p-3 bg-[#EAE3D9] text-[#3D3A37] hover:bg-[#527853] hover:text-white rounded-full transition-all;
+  }
+}
