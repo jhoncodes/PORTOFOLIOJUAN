@@ -1,25 +1,27 @@
-// ESPERAR A QUE EL HTML ESTE COMPLETAMENTE CARGADO
-document.addEventListener('DOMContentLoaded', () => {
+     // Inicialización de Lucide Icons
+      lucide.createIcons();
 
-    // 1. INICIALIZAR ICONOS DE LUCIDE
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+      // Lógica Menú Lateral Móvil
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    // 2. CONTROL DEL MENU MOVIL
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+      function openMenu() {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      }
 
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      function closeMenu() {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
 
-        // 3. CERRAR MENU MOVIL AL HACER CLICK EN CUALQUIER ENLACE
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    }
-});
+      menuBtn?.addEventListener('click', openMenu);
+      closeBtn?.addEventListener('click', closeMenu);
+      overlay?.addEventListener('click', closeMenu);
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
