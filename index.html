@@ -138,7 +138,7 @@
         </div>
     </section>
 
-    <!-- PROYECTOS -->
+   <!-- PROYECTOS -->
     <section id="proyectos" class="py-20 px-6 max-w-5xl mx-auto border-t border-[#E8E2D9] text-center">
         <div class="space-y-2 mb-12 flex flex-col items-center">
             <h2 class="text-2xl md:text-3xl font-bold text-[#527853] flex items-center justify-center gap-2">
@@ -147,9 +147,11 @@
             <p class="text-[#6E675F] text-sm">Algunos desarrollos destacados en los que he estado trabajando.</p>
         </div>
 
+        <!-- CONTENEDOR GRID (Ambos proyectos deben ir AQUÍ DENTRO) -->
         <div class="grid md:grid-cols-2 gap-8 text-left">
+            
             <!-- PROYECTO 1: CONTROL DE GASTOS -->
-            <div class="card flex flex-col justify-between bg-white rounded-xl border border-[#E3DCCE] overflow-hidden shadow-sm">
+            <div class="card flex flex-col justify-between bg-white rounded-xl border border-[#E3DCCE] overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
                 <div>
                     <!-- MARCO PARA IMAGEN COMPLETA DE LA APP MÓVIL -->
                     <div class="w-full bg-[#111827] p-4 border-b border-[#E3DCCE] flex justify-center items-center">
@@ -181,9 +183,47 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <!-- PROYECTO 2: CATALOGO DE CAFÉS DE ESPECIALIDAD -->
+            <div class="card flex flex-col justify-between bg-white rounded-xl border border-[#E3DCCE] overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
+                <div>
+                    <!-- BANNER VISUAL CON ESTILO ORGANICO -->
+                    <div class="w-full bg-[#2D4030] p-8 border-b border-[#E3DCCE] flex flex-col justify-center items-center text-center text-[#FDFBF7] relative overflow-hidden h-[180px]">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <div class="relative z-10 space-y-2 group-hover:scale-105 transition-transform duration-300">
+                            <span class="text-5xl">☕</span>
+                            <h4 class="font-bold text-lg text-[#E8E2D9] tracking-tight">Catálogo de Cafés</h4>
+                            <p class="text-xs text-[#88A788] font-medium">Sass Modular + JS Interactive</p>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-semibold text-[#2B2825] group-hover:text-[#527853] transition-colors">Cafés de Especialidad</h3>
+                            <span class="text-xs bg-[#EAE3D9] text-[#2D4030] font-medium px-2.5 py-1 rounded-md">Web App</span>
+                        </div>
+                        <p class="text-[#6E675F] text-sm leading-relaxed">
+                            Catálogo interactivo de cafés con filtrado en tiempo real por búsqueda de texto, origen y precio máximo.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">Sass (SCSS)</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between gap-4 border-t border-[#F4EFEA] mt-4 pt-4">
+                    <a href="https://catalogo-cafes.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#527853] hover:underline">
+                        Ver Demo <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <a href="https://github.com/jhoncodes/catalogo-cafes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#6E675F] hover:text-[#2B2825] transition-colors">
+                        Código en GitHub <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div> <!-- AQUÍ ES DONDE DEBE CERRARSE EL GRID -->
+    </section>
     <!-- PIE DE PAGINA / CONTACTO -->
     <footer id="contacto" class="py-16 px-6 border-t border-[#E8E2D9] bg-[#F4EFEA] text-center">
         <div class="max-w-3xl mx-auto space-y-6">
