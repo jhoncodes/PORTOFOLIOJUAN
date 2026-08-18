@@ -4,6 +4,32 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
+  // Lógica de Modo Oscuro / Claro
+  const themeToggleBtn = document.getElementById('theme-toggle');
+
+  // Aplicar tema guardado o preferencia del sistema al cargar
+  const saveTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-sheme: dark)').matches;
+
+  if (saveTheme === 'dark' || (!saveTheme && systemPrefersDark)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  // Evento para alternar tema
+  themeToggleBtn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    // Re-renderizar iconos para actualizar sol/ luna de Lucide
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  });
+
   // Lógica Menú Lateral Móvil
   const menuBtn = document.getElementById('menu-btn');
   const closeBtn = document.getElementById('close-btn');

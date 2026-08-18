@@ -2,25 +2,25 @@
 @layer components {
   /* Estilo básico de las tarjetas de proyecto */
   .card {
-    @apply bg-[#F4EFEA] border border-[#E3DCCE] rounded-2xl overflow-hidden hover:border-[#B5C9B5] transition-all duration-300 group shadow-sm;
+    @apply bg-[#F4EFEA] dark:bg-zinc-700/50 border border-[#E3DCCE] dark:border-zinc-600 rounded-2xl overflow-hidden hover:border-[#B5C9B5] dark:hover:border-emerald-500/50 transition-all duration-300 group shadow-sm;
   }
 
   /* Etiquetas de habilidades */
   .badge {
-    @apply bg-[#EAE3D9] text-[#2D4030] text-xs font-medium px-3 py-1.5 rounded-lg border border-[#DDD5C7];
+    @apply bg-[#EAE3D9] dark:bg-zinc-700 text-[#2D4030] dark:text-zinc-200 text-xs font-medium px-3 py-1.5 rounded-lg border border-[#DDD5C7] dark:border-zinc-600;
   }
 
   .badge-active {
-    @apply bg-[#527853] text-white text-xs font-medium px-3 py-1.5 rounded-lg shadow-sm;
+    @apply bg-[#527853] dark:bg-emerald-600 text-white text-xs font-medium px-3 py-1.5 rounded-lg shadow-sm;
   }
 
   /* Etiquetas tecnológicas pequeñas dentro de proyectos */
   .tag {
-    @apply text-xs bg-[#EAE3D9] text-[#5A554E] px-2.5 py-1 rounded-md;
+    @apply text-xs bg-[#EAE3D9] dark:bg-zinc-600 text-[#5A554E] dark:text-zinc-200 px-2.5 py-1 rounded-md;
   }
 
   /* Botones de redes sociales del footer */
   .social-btn {
-    @apply p-3 bg-[#EAE3D9] text-[#3D3A37] hover:bg-[#527853] hover:text-white rounded-full transition-all;
+    @apply p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#3D3A37] dark:text-zinc-200 hover:bg-[#527853] dark:hover:bg-emerald-600 hover:text-white rounded-full transition-all;
   }
 }

@@ -8,6 +8,16 @@
     <!-- FAVICON DESDE LA CARPETA IMG-->
      <link rel="icon" type="image/png" href="img/favicon.png"/>
 
+    <!-- Configuracion para usar la estragegia por clase en Tailwind CDN-->
+    <script>
+        tailwind = {
+            config: {
+                darkMode: 'class',
+            }
+        }
+    </script>
+
+
     <!-- CDN de Tailwind CSS-->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -26,13 +36,20 @@
           juan<span class="text-[#88A788]">.dev</span>
         </a>
 
-        <!-- MENU DESKTOP -->
-        <ul class="hidden md:flex space-x-8 text-sm font-medium text-[#5A554E]">
+        <!-- MENU DESKTOP Y BOTON MODO OSCURO-->
+         <div class="flex items-center gap-6"></div>
+        <ul class="hidden md:flex space-x-8 text-sm font-medium text-[#5A554E] dark:text-zinc-300">
           <li><a href="#sobre-mi" class="hover:text-[#2D4030] transition-colors">Sobre mí</a></li>
           <li><a href="#proyectos" class="hover:text-[#2D4030] transition-colors">Proyectos</a></li>
           <li><a href="#habilidades" class="hover:text-[#2D4030] transition-colors">Habilidades</a></li>
           <li><a href="#contacto" class="hover:text-[#2D4030] transition-colors">Contacto</a></li>
         </ul>
+
+    <!-- BOTON CAMBIO DE TEMA-->
+        <button id="theme-toogle" class="p-2 reounded-xl bg-[#EAE3D9] dark:bg-zinc-700 text-[#2D4030] dark:text-zinc-200 hover:bg-[#DDD5C7] dark:hover:bg-zinc-600 transition-colors" aria-label="Cambiar tema">
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+            <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+        </button>
 
         <!-- BOTON ABRIR MENU MOVIL -->
         <button id="menu-btn" class="md:hidden text-[#2D4030] p-1.5 focus:outline-none" aria-label="Abrir menú">
