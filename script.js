@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Inicialización de Lucide Icons (si la librería está disponible)
+  // Inicialización de Lucide Icons (para el resto de iconos del menú, usuario, etc.)
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
@@ -23,11 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isDark = document.documentElement.classList.contains('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-    // Re-renderizar iconos para actualizar sol/ luna de Lucide
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-    }
   });
 
   // Lógica Menú Lateral Móvil
