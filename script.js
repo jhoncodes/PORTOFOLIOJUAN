@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Aplicar tema guardado o preferencia del sistema al cargar
   const saveTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-sheme: dark)').matches;
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   if (saveTheme === 'dark' || (!saveTheme && systemPrefersDark)) {
     document.documentElement.classList.add('dark');
