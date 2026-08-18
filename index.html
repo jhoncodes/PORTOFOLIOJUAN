@@ -6,20 +6,17 @@
     <title>Juan | Desarrollador Web</title>
 
     <!-- FAVICON DESDE LA CARPETA IMG-->
-     <link rel="icon" type="image/png" href="img/favicon.png"/>
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
 
-    <!-- Configuracion para usar la estragegia por clase en Tailwind CDN-->
+    <!-- 1. CDN de Tailwind CSS PRIMERO -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. Configuración darkMode DESPUÉS DE LA CDN -->
     <script>
-        tailwind = {
-            config: {
-                darkMode: 'class',
-            }
+        tailwind.config = {
+            darkMode: 'class',
         }
     </script>
-
-
-    <!-- CDN de Tailwind CSS-->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Estilos Personalizados-->
     <link rel="stylesheet" href="styles.css" />
@@ -27,43 +24,44 @@
     <!-- Iconos de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-[#FDFBF7] text-[#3D3A37] font-sans antialiased selection:bg-emerald-200 selection:text-emerald-900">
+<body class="bg-[#FDFBF7] dark:bg-zinc-900 text-[#3D3A37] dark:text-zinc-200 font-sans antialiased selection:bg-emerald-200 selection:text-emerald-900 transition-colors duration-300">
 
     <!-- NAVEGACIÓN DESKTOP & HEADER -->
-    <header class="fixed top-0 left-0 right-0 bg-[#FDFBF7]/85 backdrop-blur-md z-40 border-b border-[#E8E2D9]">
+    <header class="fixed top-0 left-0 right-0 bg-[#FDFBF7]/85 dark:bg-zinc-900/85 backdrop-blur-md z-40 border-b border-[#E8E2D9] dark:border-zinc-800 transition-colors duration-300">
       <nav class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" class="text-xl font-bold tracking-tight text-[#2D4030] hover:text-[#4A6B4E] transition-colors">
-          juan<span class="text-[#88A788]">.dev</span>
+        <a href="#" class="text-xl font-bold tracking-tight text-[#2D4030] dark:text-emerald-400 hover:text-[#4A6B4E] dark:hover:text-emerald-300 transition-colors">
+          juan<span class="text-[#88A788] dark:text-emerald-500">.dev</span>
         </a>
 
         <!-- MENU DESKTOP Y BOTON MODO OSCURO-->
-         <div class="flex items-center gap-6"></div>
-        <ul class="hidden md:flex space-x-8 text-sm font-medium text-[#5A554E] dark:text-zinc-300">
-          <li><a href="#sobre-mi" class="hover:text-[#2D4030] transition-colors">Sobre mí</a></li>
-          <li><a href="#proyectos" class="hover:text-[#2D4030] transition-colors">Proyectos</a></li>
-          <li><a href="#habilidades" class="hover:text-[#2D4030] transition-colors">Habilidades</a></li>
-          <li><a href="#contacto" class="hover:text-[#2D4030] transition-colors">Contacto</a></li>
-        </ul>
+        <div class="flex items-center gap-6">
+          <ul class="hidden md:flex space-x-8 text-sm font-medium text-[#5A554E] dark:text-zinc-300">
+            <li><a href="#sobre-mi" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Sobre mí</a></li>
+            <li><a href="#proyectos" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Proyectos</a></li>
+            <li><a href="#habilidades" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Habilidades</a></li>
+            <li><a href="#contacto" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Contacto</a></li>
+          </ul>
 
-    <!-- BOTON CAMBIO DE TEMA-->
-        <button id="theme-toggle" class="p-2 reounded-xl bg-[#EAE3D9] dark:bg-zinc-700 text-[#2D4030] dark:text-zinc-200 hover:bg-[#DDD5C7] dark:hover:bg-zinc-600 transition-colors" aria-label="Cambiar tema">
-            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-            <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
-        </button>
+          <!-- BOTON CAMBIO DE TEMA (Con rounded-xl corregido) -->
+          <button id="theme-toggle" class="p-2 rounded-xl bg-[#EAE3D9] dark:bg-zinc-800 text-[#2D4030] dark:text-zinc-200 hover:bg-[#DDD5C7] dark:hover:bg-zinc-700 transition-colors" aria-label="Cambiar tema">
+              <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+              <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+          </button>
 
-        <!-- BOTON ABRIR MENU MOVIL -->
-        <button id="menu-btn" class="md:hidden text-[#2D4030] p-1.5 focus:outline-none" aria-label="Abrir menú">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
+          <!-- BOTON ABRIR MENU MOVIL -->
+          <button id="menu-btn" class="md:hidden text-[#2D4030] dark:text-zinc-200 p-1.5 focus:outline-none" aria-label="Abrir menú">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
       </nav>
     </header>
 
     <!-- MENÚ LATERAL MÓVIL (SIDEBAR) -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden transition-opacity"></div>
     
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-[#2D4030] text-[#FDFBF7] z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between shadow-2xl">
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-[#2D4030] dark:bg-zinc-900 text-[#FDFBF7] z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between shadow-2xl border-r border-[#4A6B4E] dark:border-zinc-800">
       <div>
-        <div class="flex justify-between items-center pb-6 border-b border-[#4A6B4E]">
+        <div class="flex justify-between items-center pb-6 border-b border-[#4A6B4E] dark:border-zinc-800">
           <span class="text-xl font-bold tracking-tight text-[#E8E2D9]">
             juan<span class="text-[#88A788]">.dev</span>
           </span>
@@ -73,13 +71,13 @@
         </div>
 
         <nav class="mt-8 flex flex-col space-y-3 font-medium">
-          <a href="#sobre-mi" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
+          <a href="#sobre-mi" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
             <i data-lucide="user" class="w-5 h-5 text-[#88A788]"></i> Sobre mí
           </a>
-          <a href="#habilidades" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
+          <a href="#habilidades" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
             <i data-lucide="code-2" class="w-5 h-5 text-[#88A788]"></i> Habilidades
           </a>
-          <a href="#proyectos" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
+          <a href="#proyectos" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9] hover:text-white transition-colors flex items-center gap-3">
             <i data-lucide="folder-git-2" class="w-5 h-5 text-[#88A788]"></i> Proyectos
           </a>
           <a href="#contacto" class="mobile-link px-4 py-3 rounded-xl bg-[#527853] text-white hover:bg-[#3F5E40] transition-colors flex items-center justify-center gap-2 mt-4">
@@ -88,7 +86,7 @@
         </nav>
       </div>
 
-      <div class="text-xs text-[#88A788] text-center pt-6 border-t border-[#4A6B4E]">
+      <div class="text-xs text-[#88A788] text-center pt-6 border-t border-[#4A6B4E] dark:border-zinc-800">
         © 2026 Juan. All rights reserved.
       </div>
     </aside>
@@ -96,51 +94,51 @@
     <!-- HERO / PRESENTACIÓN -->
     <section class="min-h-screen flex items-center justify-center pt-20 px-6">
         <div class="max-w-3xl text-center space-y-6 flex flex-col items-center">
-            <div class="inline-flex items-center gap-2 bg-[#EAE3D9] text-[#2D4030] text-xs font-medium px-3.5 py-1.5 rounded-full border border-[#DDD5C7]">
-              <span class="w-2 h-2 rounded-full bg-[#527853] animate-pulse"></span>
+            <div class="inline-flex items-center gap-2 bg-[#EAE3D9] dark:bg-zinc-800 text-[#2D4030] dark:text-zinc-200 text-xs font-medium px-3.5 py-1.5 rounded-full border border-[#DDD5C7] dark:border-zinc-700">
+              <span class="w-2 h-2 rounded-full bg-[#527853] dark:bg-emerald-500 animate-pulse"></span>
               Disponible para nuevos proyectos    
             </div>
 
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-[#2B2825] leading-tight">
-                Desarrollador Web creando <span class="text-[#527853]">experiencias funcionales</span> y limpias
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-[#2B2825] dark:text-zinc-100 leading-tight">
+                Desarrollador Web creando <span class="text-[#527853] dark:text-emerald-400">experiencias funcionales</span> y limpias
             </h1>
 
-            <p class="text-[#6E675F] text-lg md:text-xl max-w-2xl mx-auto font-normal leading-tight">
+            <p class="text-[#6E675F] dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-normal leading-tight">
                 Hola, soy Juan. Me apasiona el desarrollo de aplicaciones web interactivas.
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4 w-full sm:w-auto">
-                <a href="#proyectos" class="bg-[#527853] hover:bg-[#3F5E40] text-white font-medium px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2">
+                <a href="#proyectos" class="bg-[#527853] hover:bg-[#3F5E40] dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2">
                     Ver proyectos <i data-lucide="arrow-down" class="w-4 h-4"></i>
                 </a>
-                <a href="#contacto" class="bg-[#EFEAE1] hover:bg-[#E4DDD0] text-[#3D3A37] border border-[#DDD5C7] font-medium px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+                <a href="#contacto" class="bg-[#EFEAE1] dark:bg-zinc-800 hover:bg-[#E4DDD0] dark:hover:bg-zinc-700 text-[#3D3A37] dark:text-zinc-200 border border-[#DDD5C7] dark:border-zinc-700 font-medium px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
                     Contáctame
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- SOBRE MÍ Y HABILIDADES CENTRADOS -->
-    <section id="sobre-mi" class="py-20 px-6 max-w-4xl mx-auto border-t border-[#E8E2D9] text-center">
+    <!-- SOBRE MÍ Y HABILIDADES -->
+    <section id="sobre-mi" class="py-20 px-6 max-w-4xl mx-auto border-t border-[#E8E2D9] dark:border-zinc-800 text-center">
         <div class="space-y-12 flex flex-col items-center">
 
             <!-- SOBRE MÍ -->
             <div class="space-y-4 max-w-2xl mx-auto flex flex-col items-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-[#527853] flex items-center justify-center gap-2">
-                    <i data-lucide="user" class="text-[#527853]"></i> Sobre mí
+                <h2 class="text-2xl md:text-3xl font-bold text-[#527853] dark:text-emerald-400 flex items-center justify-center gap-2">
+                    <i data-lucide="user" class="text-[#527853] dark:text-emerald-400"></i> Sobre mí
                 </h2>
-                <p class="text-[#6E675F] leading-relaxed text-sm md:text-base">
+                <p class="text-[#6E675F] dark:text-zinc-300 leading-relaxed text-sm md:text-base">
                     Desarrollo aplicaciones web combinando lógica de programación sólida con interfaces de usuario intuitivas y bien diseñadas.
                 </p>
-                <p class="text-[#6E675F] leading-relaxed text-sm md:text-base">
+                <p class="text-[#6E675F] dark:text-zinc-300 leading-relaxed text-sm md:text-base">
                     Me gusta explorar tecnologías modernas del ecosistema JavaScript/TypeScript, construir backend eficientes y configurar servidores en entornos autocontenidos como Docker.
                 </p>
             </div>
 
             <!-- HABILIDADES TÉCNICAS -->
-            <div id="habilidades" class="bg-[#F4EFEA] p-8 rounded-2xl border border-[#E3DCCE] space-y-4 shadow-sm w-full max-w-2xl text-center">
-                <h3 class="text-lg font-semibold text-[#527853] flex items-center justify-center gap-2">
-                    <i data-lucide="code-2" class="text-[#527853]"></i> Tecnologías & Herramientas
+            <div id="habilidades" class="bg-[#F4EFEA] dark:bg-zinc-800/60 p-8 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 space-y-4 shadow-sm w-full max-w-2xl text-center">
+                <h3 class="text-lg font-semibold text-[#527853] dark:text-emerald-400 flex items-center justify-center gap-2">
+                    <i data-lucide="code-2" class="text-[#527853] dark:text-emerald-400"></i> Tecnologías & Herramientas
                 </h3>
                 <div class="flex flex-wrap justify-center gap-2 pt-2">
                     <span class="badge">HTML5 / CSS</span>
@@ -159,22 +157,22 @@
     </section>
 
    <!-- PROYECTOS -->
-    <section id="proyectos" class="py-20 px-6 max-w-5xl mx-auto border-t border-[#E8E2D9] text-center">
+    <section id="proyectos" class="py-20 px-6 max-w-5xl mx-auto border-t border-[#E8E2D9] dark:border-zinc-800 text-center">
         <div class="space-y-2 mb-12 flex flex-col items-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-[#527853] flex items-center justify-center gap-2">
-                <i data-lucide="folder-git-2" class="text-[#527853]"></i> Proyectos Seleccionados
+            <h2 class="text-2xl md:text-3xl font-bold text-[#527853] dark:text-emerald-400 flex items-center justify-center gap-2">
+                <i data-lucide="folder-git-2" class="text-[#527853] dark:text-emerald-400"></i> Proyectos Seleccionados
             </h2>
-            <p class="text-[#6E675F] text-sm">Algunos desarrollos destacados en los que he estado trabajando.</p>
+            <p class="text-[#6E675F] dark:text-zinc-400 text-sm">Algunos desarrollos destacados en los que he estado trabajando.</p>
         </div>
 
-        <!-- CONTENEDOR GRID (Ambos proyectos deben ir AQUÍ DENTRO) -->
+        <!-- CONTENEDOR GRID -->
         <div class="grid md:grid-cols-2 gap-8 text-left">
             
             <!-- PROYECTO 1: CONTROL DE GASTOS -->
-            <div class="card flex flex-col justify-between bg-white rounded-xl border border-[#E3DCCE] overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
+            <div class="card flex flex-col justify-between bg-white dark:bg-zinc-800/80 rounded-xl border border-[#E3DCCE] dark:border-zinc-700 overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
                 <div>
-                    <!-- MARCO PARA IMAGEN COMPLETA DE LA APP MÓVIL -->
-                    <div class="w-full bg-[#111827] p-4 border-b border-[#E3DCCE] flex justify-center items-center">
+                    <!-- MARCO PARA IMAGEN COMPLETA -->
+                    <div class="w-full bg-[#111827] dark:bg-zinc-950 p-4 border-b border-[#E3DCCE] dark:border-zinc-700 flex justify-center items-center">
                         <img
                             src="img/control-gastosv1.jpg"
                             alt="Captura de pantalla del proyecto Control de Gastos"
@@ -183,10 +181,10 @@
                     </div>
                     <div class="p-6 space-y-3">
                         <div class="flex justify-between items-start">
-                            <h3 class="text-xl font-semibold text-[#2B2825] group-hover:text-[#527853] transition-colors">Control de Gastos</h3>
-                            <span class="text-xs bg-[#EAE3D9] text-[#2D4030] font-medium px-2.5 py-1 rounded-md">Web App</span>
+                            <h3 class="text-xl font-semibold text-[#2B2825] dark:text-zinc-100 group-hover:text-[#527853] dark:group-hover:text-emerald-400 transition-colors">Control de Gastos</h3>
+                            <span class="text-xs bg-[#EAE3D9] dark:bg-zinc-700 text-[#2D4030] dark:text-zinc-200 font-medium px-2.5 py-1 rounded-md">Web App</span>
                         </div>
-                        <p class="text-[#6E675F] text-sm leading-relaxed">
+                        <p class="text-[#6E675F] dark:text-zinc-300 text-sm leading-relaxed">
                             Aplicación de gestión de presupuesto personal con sincronización de datos en tiempo real entre servidor y dispositivos móviles.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
@@ -198,17 +196,17 @@
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="https://github.com/jhoncodes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#527853] hover:underline">
+                    <a href="https://github.com/jhoncodes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#527853] dark:text-emerald-400 hover:underline">
                         Ver código en GitHub <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
             </div>
 
             <!-- PROYECTO 2: CATALOGO DE CAFÉS DE ESPECIALIDAD -->
-            <div class="card flex flex-col justify-between bg-white rounded-xl border border-[#E3DCCE] overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
+            <div class="card flex flex-col justify-between bg-white dark:bg-zinc-800/80 rounded-xl border border-[#E3DCCE] dark:border-zinc-700 overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
                 <div>
-                    <!-- BANNER VISUAL CON ESTILO ORGANICO -->
-                    <div class="w-full bg-[#2D4030] p-8 border-b border-[#E3DCCE] flex flex-col justify-center items-center text-center text-[#FDFBF7] relative overflow-hidden h-[180px]">
+                    <!-- BANNER VISUAL -->
+                    <div class="w-full bg-[#2D4030] dark:bg-zinc-950 p-8 border-b border-[#E3DCCE] dark:border-zinc-700 flex flex-col justify-center items-center text-center text-[#FDFBF7] relative overflow-hidden h-[180px]">
                         <div class="absolute inset-0 bg-black/10"></div>
                         <div class="relative z-10 space-y-2 group-hover:scale-105 transition-transform duration-300">
                             <span class="text-5xl">☕</span>
@@ -218,10 +216,10 @@
                     </div>
                     <div class="p-6 space-y-3">
                         <div class="flex justify-between items-start">
-                            <h3 class="text-xl font-semibold text-[#2B2825] group-hover:text-[#527853] transition-colors">Cafés de Especialidad</h3>
-                            <span class="text-xs bg-[#EAE3D9] text-[#2D4030] font-medium px-2.5 py-1 rounded-md">Web App</span>
+                            <h3 class="text-xl font-semibold text-[#2B2825] dark:text-zinc-100 group-hover:text-[#527853] dark:group-hover:text-emerald-400 transition-colors">Cafés de Especialidad</h3>
+                            <span class="text-xs bg-[#EAE3D9] dark:bg-zinc-700 text-[#2D4030] dark:text-zinc-200 font-medium px-2.5 py-1 rounded-md">Web App</span>
                         </div>
-                        <p class="text-[#6E675F] text-sm leading-relaxed">
+                        <p class="text-[#6E675F] dark:text-zinc-300 text-sm leading-relaxed">
                             Catálogo interactivo de cafés con filtrado en tiempo real por búsqueda de texto, origen y precio máximo.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
@@ -232,27 +230,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-6 pt-0 flex items-center justify-between gap-4 border-t border-[#F4EFEA] mt-4 pt-4">
-                    <a href="https://catalogo-cafes.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#527853] hover:underline">
+                <div class="p-6 pt-0 flex items-center justify-between gap-4 border-t border-[#F4EFEA] dark:border-zinc-700/50 mt-4 pt-4">
+                    <a href="https://catalogo-cafes.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#527853] dark:text-emerald-400 hover:underline">
                         Ver Demo <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                     </a>
-                    <a href="https://github.com/jhoncodes/catalogo-cafes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#6E675F] hover:text-[#2B2825] transition-colors">
+                    <a href="https://github.com/jhoncodes/catalogo-cafes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-[#6E675F] dark:text-zinc-400 hover:text-[#2B2825] dark:hover:text-zinc-100 transition-colors">
                         Código en GitHub <i data-lucide="github" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
             </div>
 
-        </div> <!-- AQUÍ ES DONDE DEBE CERRARSE EL GRID -->
+        </div>
     </section>
+
     <!-- PIE DE PAGINA / CONTACTO -->
-    <footer id="contacto" class="py-16 px-6 border-t border-[#E8E2D9] bg-[#F4EFEA] text-center">
+    <footer id="contacto" class="py-16 px-6 border-t border-[#E8E2D9] dark:border-zinc-800 bg-[#F4EFEA] dark:bg-zinc-950 text-center transition-colors duration-300">
         <div class="max-w-3xl mx-auto space-y-6">
-            <h2 class="text-2xl font-bold text-[#2B2825]">¿Creamos algo juntos?</h2>
-            <p class="text-[#6E675F] text-sm md:text-base">Si quieres hablar sobre algún proyecto o colaborar, escríbeme directamente.</p>
+            <h2 class="text-2xl font-bold text-[#2B2825] dark:text-zinc-100">¿Creamos algo juntos?</h2>
+            <p class="text-[#6E675F] dark:text-zinc-400 text-sm md:text-base">Si quieres hablar sobre algún proyecto o colaborar, escríbeme directamente.</p>
         
             <!-- BOTÓN DE CORREO DIRECTO -->
             <div class="pt-2">
-                <a href="mailto:juan.dev0123@gmail.com" class="inline-flex items-center gap-2 bg-[#527853] hover:bg-[#3F5E40] text-white font-medium px-6 py-3 rounded-xl transition-all shadow-sm">
+                <a href="mailto:juan.dev0123@gmail.com" class="inline-flex items-center gap-2 bg-[#527853] hover:bg-[#3F5E40] dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-medium px-6 py-3 rounded-xl transition-all shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -261,10 +260,10 @@
                 </a>
             </div>
 
-            <!-- ENLACES A REDES (GITHUB Y LINKEDIN EN SVG DIRECTO) -->
+            <!-- ENLACES A REDES -->
             <div class="flex justify-center gap-4 pt-4">
                 <!-- GITHUB -->
-                <a href="https://github.com/jhoncodes" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#527853] text-white hover:bg-[#3F5E40] rounded-full transition-colors shadow-sm flex items-center justify-center" title="GitHub">
+                <a href="https://github.com/jhoncodes" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#527853] hover:bg-[#3F5E40] dark:bg-zinc-800 dark:hover:bg-zinc-700 text-white rounded-full transition-colors shadow-sm flex items-center justify-center" title="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                         <path d="M9 18c-4.51 2-5-2-7-2"></path>
@@ -272,7 +271,7 @@
                 </a>
 
                 <!-- LINKEDIN -->
-                <a href="https://www.linkedin.com/in/juan-l%C3%B3pez-campos-7239452a9/" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#527853] text-white hover:bg-[#3F5E40] rounded-full transition-colors shadow-sm flex items-center justify-center" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/juan-l%C3%B3pez-campos-7239452a9/" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#527853] hover:bg-[#3F5E40] dark:bg-zinc-800 dark:hover:bg-zinc-700 text-white rounded-full transition-colors shadow-sm flex items-center justify-center" title="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                         <rect width="4" height="12" x="2" y="9"></rect>
@@ -281,7 +280,7 @@
                 </a>
             </div>
             
-            <p class="text-xs text-[#8C8275] pt-8">© 2026 Juan. Desarrollado con HTML, Tailwind CSS y JavaScript.</p>
+            <p class="text-xs text-[#8C8275] dark:text-zinc-500 pt-8">© 2026 Juan. Desarrollado con HTML, Tailwind CSS y JavaScript.</p>
         </div>
     </footer>
 
