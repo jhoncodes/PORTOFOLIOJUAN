@@ -1,11 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setup</title>
+    <title>Setup | Juan</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
+
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CONFIGURACION MODO OSCURO -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <!-- INICIALIZACIÓN INMEDIATA DEL TEMA (Evita parpadeo blanco) -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <!-- ESTILOS PERSONALIZADOS -->
+    <link rel="stylesheet" href="styles.css"/>
+
+    <!-- ICONOS DE LUCIDE -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-    
+<body class="bg-[#FDFBF7] dark:bg-zinc-900 text-[#3D3A37] dark:text-zinc-200 font-sans antialiased selection:bg-emerald-200 selection:text-emerald-900 transition-colors duration-300">
+
+    <!-- HEADER / NAVEGACION DESKTOP -->
+    <header class="fixed top-0 left-0 right-0 bg-[#FDFBF7]/85 dark:bg-zinc-900/85 backdrop-blur-md z-40 border-b border-[#E8E2D9] dark:border-zinc-800 transition-colors duration-300">
+      <nav class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-xl font-bold tracking-tight text-[#2D4030] dark:text-emerald-400 hover:text-[#4A6B4E] dark:hover:text-emerald-300 transition-colors">
+          juan<span class="text-[#88A788] dark:text-emerald-500">.dev</span>
+        </a>           
+
+        <!-- MENU DESKTOP -->
+        <div class="flex items-center gap-6">
+          <ul class="hidden md:flex space-x-8 text-sm font-medium text-[#5A554E] dark:text-zinc-300">
+            <li><a href="index.html#sobre-mi" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Sobre mí</a></li>
+            <li><a href="index.html#proyectos" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Proyectos</a></li>
+            <li><a href="index.html#habilidades" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Habilidades</a></li>
+            <li><a href="setup.html" class="text-[#527853] dark:text-emerald-400 font-bold border-b-2 border-[#527853] dark:border-emerald-400 pb-1">Setup</a></li>
+            <li><a href="index.html#contacto" class="hover:text-[#2D4030] dark:hover:text-emerald-400 transition-colors">Contacto</a></li>
+          </ul>
+
+          <!-- BOTÓN CAMBIO DE TEMA -->
+          <button id="theme-toggle" class="p-2 rounded-xl bg-[#EAE3D9] dark:bg-zinc-800 hover:bg-[#DDD5C7] dark:hover:bg-zinc-700 transition-colors flex items-center justify-center" aria-label="Cambiar tema">
+            <svg class="w-5 h-5 block dark:hidden text-[#527853]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21h6" /><path d="M10 17h4" /><path d="M12 14v3" />
+              <path d="M6 14a6 6 0 0 1 12 0H6z" fill="currentColor" fill-opacity="0.25" />
+              <line x1="12" y1="2" x2="12" y2="4" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="1" y1="11" x2="3" y2="11" /><line x1="21" y1="11" x2="23" y2="11" /><line x1="19.78" y1="4.22" x2="18.36" y2="5.64" />
+            </svg>
+            <svg class="w-5 h-5 hidden dark:block text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21h6" /><path d="M10 17h4" /><path d="M12 14v3" /><path d="M6 14a6 6 0 0 1 12 0H6z" />
+            </svg>
+          </button>
+
+          <!-- BOTÓN MENÚ MÓVIL -->
+          <button id="menu-btn" class="md:hidden text-[#2D4030] dark:text-zinc-200 p-1.5 focus:outline-none" aria-label="Abrir menú">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MENÚ MÓVIL (SIDEBAR) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-[#2D4030] dark:bg-zinc-900 text-[#FDFBF7] z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-6 flex flex-col justify-between shadow-2xl border-r border-[#4A6B4E] dark:border-zinc-800">
+      <div>
+        <div class="flex justify-between items-center pb-6 border-b border-[#4A6B4E] dark:border-zinc-800">
+          <span class="text-xl font-bold tracking-tight text-[#E8E2D9]">juan<span class="text-[#88A788]">.dev</span></span>
+          <button id="close-btn" class="text-[#88A788] hover:text-white transition-colors p-1" aria-label="Cerrar menú">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <nav class="mt-8 flex flex-col space-y-3 font-medium">
+          <a href="index.html#sobre-mi" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9]">Sobre mí</a>
+          <a href="index.html#habilidades" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9]">Habilidades</a>
+          <a href="index.html#proyectos" class="mobile-link px-4 py-3 rounded-xl hover:bg-[#3F5E40] dark:hover:bg-zinc-800 text-[#E8E2D9]">Proyectos</a>
+          <a href="setup.html" class="mobile-link px-4 py-3 rounded-xl bg-[#3F5E40] dark:bg-zinc-800 text-white font-bold">Setup</a>
+          <a href="index.html#contacto" class="mobile-link px-4 py-3 rounded-xl bg-[#527853] text-white hover:bg-[#3F5E40] flex items-center justify-center gap-2 mt-4">Contacto</a>
+        </nav>
+      </div>
+      <div class="text-xs text-[#88A788] text-center pt-6 border-t border-[#4A6B4E] dark:border-zinc-800">© 2026 Juan</div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL DEL SETUP -->
+    <main class="pt-28 pb-20 px-6 max-w-5xl mx-auto space-y-16">
+        
+        <!-- CABECERA -->
+        <div class="text-center space-y-4 max-w-2xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-[#2B2825] dark:text-zinc-100 flex items-center justify-center gap-3">
+                <i data-lucide="monitor" class="text-[#527853] dark:text-emerald-400"></i> Mi Workspace & Setup
+            </h1>
+            <p class="text-[#6E675F] dark:text-zinc-400 text-base md:text-lg">
+                Haz clic en los puntos numerados de la foto para ver los detalles de cada componente.
+            </p>
+        </div>
+
+        <!-- VISUALIZADOR DE IMAGEN CON PUNTOS INTERACTIVOS -->
+        <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-[#E3DCCE] dark:border-zinc-700 bg-zinc-950">
+            <img src="img/setup.jpg" alt="Setup de escritorio de Juan" class="w-full h-auto object-cover block" />
+
+            <!-- 1. Monitor -->
+            <a href="#item-monitor" class="setup-spot absolute top-[32%] left-[39%]" title="Monitor Principal">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">1</span>
+                </span>
+            </a>
+
+            <!-- 2. PC Custom / Torrecilla -->
+            <a href="#item-pc" class="setup-spot absolute top-[48%] left-[72%]" title="Torre PC Desktop">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">2</span>
+                </span>
+            </a>
+
+            <!-- 3. Mac Mini -->
+            <a href="#item-mac" class="setup-spot absolute top-[58%] left-[19%]" title="Mac Mini">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">3</span>
+                </span>
+            </a>
+
+            <!-- 4. Teclado Mecánico -->
+            <a href="#item-teclado" class="setup-spot absolute top-[66%] left-[40%]" title="Teclado Mecánico">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">4</span>
+                </span>
+            </a>
+
+            <!-- 5. Ratón / Mouse -->
+            <a href="#item-raton" class="setup-spot absolute top-[68%] left-[57%]" title="Ratón RGB">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">5</span>
+                </span>
+            </a>
+
+            <!-- 6. Altavoces / Audio -->
+            <a href="#item-altavoces" class="setup-spot absolute top-[50%] left-[26%]" title="Altavoces de Escritorio">
+                <span class="relative flex h-7 w-7">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-7 w-7 bg-[#527853] dark:bg-emerald-500 text-white text-xs font-bold items-center justify-center shadow-lg border-2 border-white">6</span>
+                </span>
+            </a>
+        </div>
+
+        <!-- DETALLES DE PRODUCTOS -->
+        <div class="space-y-6 max-w-4xl mx-auto pt-8">
+            <h2 class="text-2xl font-bold text-[#2B2825] dark:text-zinc-100 flex items-center gap-2 border-b border-[#E8E2D9] dark:border-zinc-800 pb-4">
+                <i data-lucide="cpu" class="text-[#527853] dark:text-emerald-400"></i> Componentes del Setup
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- 1. MONITOR -->
+                <div id="item-monitor" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="tv" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #1</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">Monitor Principal</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Pantalla con excelente nitidez y ángulo de visión para trabajo continuo de desarrollo web e interfaces.
+                    </p>
+                </div>
+
+                <!-- 2. PC TORRE -->
+                <div id="item-pc" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #2</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">PC Workstation Custom</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Torre compacta blanca con cristal templado e iluminación interna RGB, enfocada a desarrollo y multitarea.
+                    </p>
+                </div>
+
+                <!-- 3. MAC MINI -->
+                <div id="item-mac" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="hard-drive" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #3</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">Mac Mini</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Servidor compacto de trabajo para pruebas de entorno, despliegues locales y contenedores.
+                    </p>
+                </div>
+
+                <!-- 4. TECLADO MECÁNICO -->
+                <div id="item-teclado" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="keyboard" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #4</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">Teclado Mecánico Custom</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Teclado con keycaps personalizadas estilo retro y switches suaves para programar cómodamente.
+                    </p>
+                </div>
+
+                <!-- 5. RATÓN RGB -->
+                <div id="item-raton" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="mouse" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #5</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">Ratón Honeycomb RGB</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Mouse ultraligero perforado con iluminación RGB y sensor óptico de alta precisión.
+                    </p>
+                </div>
+
+                <!-- 6. ALTAVOCES DE ESCRITORIO -->
+                <div id="item-altavoces" class="setup-card bg-white dark:bg-zinc-800/80 p-6 rounded-2xl border border-[#E3DCCE] dark:border-zinc-700 transition-all duration-300 relative">
+                    <div class="selected-badge hidden absolute top-4 right-4 bg-[#527853] text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        ¡El objeto es este! 🎯
+                    </div>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-[#EAE3D9] dark:bg-zinc-700 text-[#527853] dark:text-emerald-400 rounded-xl">
+                            <i data-lucide="volume-2" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-[#527853] dark:text-emerald-400 font-bold">OBJETO #6</span>
+                            <h3 class="text-lg font-bold text-[#2B2825] dark:text-zinc-100">Altavoces Estéreo</h3>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#6E675F] dark:text-zinc-300">
+                        Pareja de altavoces laterales compactos para audio en el espacio de trabajo.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ARCHIVO JAVASCRIPT PRINCIPAL -->
+    <script src="script.js"></script>
 </body>
 </html>
